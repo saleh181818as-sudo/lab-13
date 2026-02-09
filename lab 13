@@ -1,0 +1,20 @@
+import pandas as pd
+import time
+
+def a(b):
+    c = b.copy()
+    for d in c.columns:
+        c[d] = pd.to_numeric(c[d], errors="ignore")
+    return c
+
+def e(f, g, h=50000):
+    i = time.perf_counter()
+    j = 0
+    for k, l in enumerate(pd.read_csv(f, chunksize=h)):
+        m = a(l)
+        n, o = ("w", True) if k == 0 else ("a", False)
+        m.to_csv(g, mode=n, header=o, index=False)
+        j += len(m)
+    p = time.perf_counter() - i
+    q = {"rows": j,"chunksize": h,"total_time": p,"rows_per_sec": j / p if p > 0 else None,}
+    return q
