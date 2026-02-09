@@ -18,3 +18,8 @@ def e(f, g, h=50000):
     p = time.perf_counter() - i
     q = {"rows": j,"chunksize": h,"total_time": p,"rows_per_sec": j / p if p > 0 else None,}
     return q
+
+r = "/mnt/data/day13_large_users.csv"
+s = "/mnt/data/day13_large_users_cleaned.csv"
+t = e(r, s, 50000)
+print(t)
